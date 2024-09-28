@@ -1,0 +1,12 @@
+server:
+  port: 8071
+
+spring:
+  application:
+    name: account-middleend
+
+  ##Eureka
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
