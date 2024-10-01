@@ -1,4 +1,5 @@
-package com.msf.account_middleend.domain;
+package com.msf.account.middleend.domain;
+
 
 import lombok.Data;
 
@@ -11,8 +12,7 @@ public class Account {
 
     private String currencyType;
 
-    private Double amount;
+    private double amount;
 
     private Integer customerId;
-
 }

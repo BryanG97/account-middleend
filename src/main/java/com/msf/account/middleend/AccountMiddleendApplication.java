@@ -1,4 +1,4 @@
-package com.msf.account_middleend;
+package com.msf.account.middleend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

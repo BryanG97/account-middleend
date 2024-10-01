@@ -1,4 +1,4 @@
-package com.msf.account_middleend;
+package com.msf.account.middleend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
