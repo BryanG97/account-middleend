@@ -1,6 +1,7 @@
 package com.msf.account.middleend.controller;
 
 import com.msf.account.middleend.domain.Account;
+import com.msf.account.middleend.domain.Amount;
 import com.msf.account.middleend.service.IAccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,25 +19,38 @@ public class AccountController {
 
     @PostMapping()
     @CrossOrigin
-    public ResponseEntity<Account> createAccount(@RequestBody Account account) {
+    public ResponseEntity<Account> createAccount(@RequestBody Account account){
         return new ResponseEntity<>(iAccountService.createAccount(account), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     @CrossOrigin
     public ResponseEntity<Account> getAccount(@PathVariable String id){
-        return new ResponseEntity<>(iAccountService.getAccount(id), HttpStatus.OK);
+        Account customer = iAccountService.getAccount(id);
+        if(customer == null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(customer, HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    @CrossOrigin
+    public ResponseEntity<Account> updateAccount(@PathVariable String id, @RequestBody Amount amount){
+        Account customer = iAccountService.updateAccount(id, amount);
+        if(customer == null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
     @GetMapping("/customer/{id}")
     @CrossOrigin
-    public ResponseEntity<List<Account>> getAccounts(@PathVariable String id) {
-        List<Account> accounts = iAccountService.getAccounts(id);
-        if (accounts == null || accounts.isEmpty()) {
+    public ResponseEntity<List<Account>> getAccounts(@PathVariable String id){
+        List<Account> customerAccounts = iAccountService.getAccounts(id);
+        if(customerAccounts == null){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(accounts, HttpStatus.OK);
+
+        return new ResponseEntity<>(customerAccounts, HttpStatus.OK);
     }
-
-
 }
